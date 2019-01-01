@@ -64,3 +64,59 @@ def BertModel(AlgorithmBytes):
 			NumberOne += 1
 
 	return(DecryptAlgorithm)
+	
+	
+def BertPanel(BinaryCalc):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	BinaryCalc : None
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	Alphabet = list(Alphabet)
+	
+	AlgorithmDecrypt = ("")
+	
+	for Character in BinaryCalc:
+		# Create loop for characters.
+		if Character in Alphabet:
+			# Create condition for testing.
+			Nulling = Alphabet.index(Character)
+			AlgorithmDecrypt += str(Nulling)
+			# Success for loop hashing.
+		else:
+			AlgorithmDecrypt += Character
+	
+	return(AlgorithmDecrypt)
+	
+def text_to_bin(Texting):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	Texting : None
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	ListBytes = [ bin(ord(ch))[2:].zfill(8) for ch in Texting ]
+	ArguLists = []
+	
+	for Bytes in ListBytes:
+		SegmentOne = Bytes[:3]
+		SegmentTwo = Bytes[3:]
+		
+		ArguLists.append(SegmentOne)
+		ArguLists.append(SegmentTwo)
+		
+	return(ArguLists)
