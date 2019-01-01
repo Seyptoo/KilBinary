@@ -123,7 +123,7 @@ def BertPnnel(Texting):
 	return(ArguLists)
 
 if __name__ == "__main__":
-	BinaryList = BertPanel(options.encrypt)
+	BinaryList = BertPanel(options.decrypt)
 	BinaryArguments = BertModel(BinaryList)
 	DecryptArguments = binascii.unhexlify('%x' % int('0b' + BinaryArguments, 2)).decode("ascii")
 	print("\n[+] Decrypt : "+DecryptArguments)
