@@ -1,2 +1,3 @@
 # KilBinary-Not-Clean-
-A program to generate a hash create by us.
+
+By Seyptoo and lulz3xploit <3
