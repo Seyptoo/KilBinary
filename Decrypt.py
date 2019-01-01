@@ -3,6 +3,7 @@
 import binascii
 import sys
 import subprocess
+import options
 
 CHECK_VERSION = sys.version_info <= (3,0)
 if(CHECK_VERSION):
@@ -96,7 +97,7 @@ def BertPanel(BinaryCalc):
 	
 	return(AlgorithmDecrypt)
 	
-def text_to_bin(Texting):
+def BertPnnel(Texting):
 	"""
 	This function will test the algorithm.
 	Opp check the algorithm.
@@ -120,3 +121,9 @@ def text_to_bin(Texting):
 		ArguLists.append(SegmentTwo)
 		
 	return(ArguLists)
+
+if __name__ == "__main__":
+	BinaryList = BertPanel(options.encrypt)
+	BinaryArguments = BertModel(BinaryList)
+	DecryptArguments = binascii.unhexlify('%x' % int('0b' + BinaryArguments, 2)).decode("ascii")
+	print("\n[+] Decrypt : "+DecryptArguments)
