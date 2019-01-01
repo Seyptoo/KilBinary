@@ -34,73 +34,33 @@ def BertModel(AlgorithmBytes):
 			if("+" in BytesOp):
 				# Test for additions of hash and development.
 				BytesOp = BytesOp.split("+")
-				resultat = int(BytesOp[0]) + int(BytesOp[1])
+				instanceResult = int(BytesOp[0]) + int(BytesOp[1])
 	
 			elif("-" in BytesOp):
 				# Test then for subtractions and development.
 				BytesOp = BytesOp.split("-")
-				resultat = int(BytesOp[0]) - int(BytesOp[1])
+				instanceResult = int(BytesOp[0]) - int(BytesOp[1])
 
 			elif("*" in BytesOp):
 				# Multiplications and split the variable next.
 				BytesOp = BytesOp.split("*")
-				resultat = int(BytesOp[0]) * int(BytesOp[1])
+				instanceResult = int(BytesOp[0]) * int(BytesOp[1])
 
 			elif("/" in BytesOp):
 				# Division for data recovery.
 				BytesOp = BytesOp.split("/")
-				resultat = int(BytesOp[0]) / int(BytesOp[1])
+				instanceResult = int(BytesOp[0]) / int(BytesOp[1])
 			
 			if(NumberOne%2 != 0):
-				if(len(str(resultat)) < 3):
-					while len(str(resultat)) < 3:
-						resultat = "0"+str(resultat)
+				if(len(str(instanceResult)) < 3):
+					while len(str(instanceResult)) < 3:
+						instanceResult = "0"+str(instanceResult)
 			else:
-				if(len(str(resultat)) < 5):
-					while len(str(resultat)) < 5:
-						resultat = "0"+str(resultat)
+				if(len(str(instanceResult)) < 5):
+					while len(str(instanceResult)) < 5:
+						instanceResult = "0"+str(instanceResult)
 		
-			DecryptAlgorithm += str(resultat)
+			DecryptAlgorithm += str(instanceResult)
 			NumberOne += 1
 
 	return(DecryptAlgorithm)
-	
-	
-def BertPanel(calcbin):
-	alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	alphabet = list(alphabet)
-	
-	text_decrypt = ""
-	
-	for caractere in calcbin:
-		if caractere in alphabet:
-			pos = alphabet.index(caractere)
-			text_decrypt += str(pos)
-			
-		else:
-			text_decrypt += caractere
-	
-	return(text_decrypt)
-	
-def text_to_bin(texte):
-	list_octet = [ bin(ord(ch))[2:].zfill(8) for ch in texte ]
-	liste = []
-	
-	for octet in list_octet:
-		seg_1 = octet[:3]
-		seg_2 = octet[3:]
-		
-		liste.append(seg_1)
-		liste.append(seg_2)
-		
-	return(liste)
-
-text_crypt = input("decrypt> ")
-binaire_list = BertPanel(text_crypt)
-binaire = BertModel(binaire_list)
-decypt_text = binascii.unhexlify('%x' % int('0b' + binaire, 2)).decode("ascii")
-print("\n TEXTE : "+decypt_text)
-
-
-
-	
