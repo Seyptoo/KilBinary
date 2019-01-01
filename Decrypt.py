@@ -1,49 +1,72 @@
+#coding:utf-8
+
 import binascii
+import sys
+import subprocess
 
-def calc(octet):
-	decrypt = ""
-	n = 1
+CHECK_VERSION = sys.version_info <= (3,0)
+if(CHECK_VERSION):
+	# Let's test if the program is in Python 2 or 3.
+	sys.exit("[!] Version of Python is incorrect.")
 
-	octet = octet.split("=")
+def BertModel(AlgorithmBytes):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	AlgorithmBytes : It's the bytes in the hash
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	DecryptAlgorithm = ("")
+	NumberOne = 1
+	# We create the basic variables.
+	AlgorithmBytes = AlgorithmBytes.split("=")
 	
-	for calc in octet:
-		if calc != '':
-			print("[*] calcul de %s" % (calc))
-			if "+" in calc:
-				calc = calc.split("+")
-				resultat = int(calc[0]) + int(calc[1])
-				print("[-] "+str(resultat))
-			elif "-" in calc:
-				calc = calc.split("-")
-				resultat = int(calc[0]) - int(calc[1])
-				print("[-] "+str(resultat))
-			elif "*" in calc:
-				calc = calc.split("*")
-				resultat = int(calc[0]) * int(calc[1])
-				print("[-] "+str(resultat))
-			elif "/" in calc:
-				calc = calc.split("/")
-				resultat = int(calc[0]) / int(calc[1])
-				print("[-] "+str(resultat))
+	for BytesOp in AlgorithmBytes:
+		# Create loop for hashsing.
+		if(BytesOp != ''):
+			# Test is variable is empty.
+			if("+" in BytesOp):
+				# Test for additions of hash and development.
+				BytesOp = BytesOp.split("+")
+				resultat = int(BytesOp[0]) + int(BytesOp[1])
+	
+			elif("-" in BytesOp):
+				# Test then for subtractions and development.
+				BytesOp = BytesOp.split("-")
+				resultat = int(BytesOp[0]) - int(BytesOp[1])
+
+			elif("*" in BytesOp):
+				# Multiplications and split the variable next.
+				BytesOp = BytesOp.split("*")
+				resultat = int(BytesOp[0]) * int(BytesOp[1])
+
+			elif("/" in BytesOp):
+				# Division for data recovery.
+				BytesOp = BytesOp.split("/")
+				resultat = int(BytesOp[0]) / int(BytesOp[1])
 			
-			if n%2 != 0:
-				if len(str(resultat)) < 3:
+			if(NumberOne%2 != 0):
+				if(len(str(resultat)) < 3):
 					while len(str(resultat)) < 3:
 						resultat = "0"+str(resultat)
 			else:
-				if len(str(resultat)) < 5:
+				if(len(str(resultat)) < 5):
 					while len(str(resultat)) < 5:
 						resultat = "0"+str(resultat)
-						
-			print("RES: "+str(resultat))
 		
-			decrypt += str(resultat)
-			n += 1
+			DecryptAlgorithm += str(resultat)
+			NumberOne += 1
 
-	return(decrypt)
+	return(DecryptAlgorithm)
 	
 	
-def alphabet_convert(calcbin):
+def BertPanel(calcbin):
 	alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	alphabet = list(alphabet)
 	
@@ -73,11 +96,10 @@ def text_to_bin(texte):
 	return(liste)
 
 text_crypt = input("decrypt> ")
-binaire_list = alphabet_convert(text_crypt)
-binaire = calc(binaire_list)
+binaire_list = BertPanel(text_crypt)
+binaire = BertModel(binaire_list)
 decypt_text = binascii.unhexlify('%x' % int('0b' + binaire, 2)).decode("ascii")
-print("\n---------------\n[+] Decrypt SUCCESS ! ")
-print("\nTEXTE: "+decypt_text)
+print("\n TEXTE : "+decypt_text)
 
 
 
