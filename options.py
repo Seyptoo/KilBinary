@@ -9,4 +9,3 @@ parser.add_option("-d", "--decrypt", dest="decrypt", help="decrypt")
 
 encrypt = options.encrypt
 decrypt = options.decrypt
-validys = options.validys
