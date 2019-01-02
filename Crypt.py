@@ -45,7 +45,7 @@ def BertModel(hashing_octet):
 				
 				# A division error can happen so I made an exception.
 				# The truth that it's cool to make an exception but I put a pass to do nothing.
-			except:
+			except ZeroDivisionError as e:
 				pass
 
 			if AOperation == int(hashing_octet):
