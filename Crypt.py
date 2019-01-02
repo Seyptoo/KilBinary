@@ -39,25 +39,23 @@ def BertModel(hashing_octet):
 				OOperation = int(OctetRow / BytesRow)
 
 				if DOperation == int(hashing_octet):
-					instanceResult = ("%s/%s=" % (str(BytesRow), str(OctetRow)))
-				elif OOperation == int(hashing_octet):
-					instanceResult = ("%s/%s=" % (str(OctetRow), str(BytesRow)))
+					return("%s/%s=" % (str(BytesRow), str(OctetRow)))
+				if OOperation == int(hashing_octet):
+					return("%s/%s=" % (str(OctetRow), str(BytesRow)))
 				
 				# A division error can happen so I made an exception.
 				# The truth that it's cool to make an exception but I put a pass to do nothing.
-			except ZeroDivisionError as e:
+			except:
 				pass
 
 			if AOperation == int(hashing_octet):
-				instanceResult = ("%s+%s=" % (str(BytesRow), str(OctetRow)))
-			elif SOperation == int(hashing_octet):
-				instanceResult = ("%s-%s=" % (str(BytesRow), str(OctetRow)))
-			elif ZOperation == int(hashing_octet):
-				instanceResult = ("%s-%s=" % (str(OctetRow), str(BytesRow)))
-			elif MOperation == int(hashing_octet):
-				instanceResult = ("%s*%s=" % (str(BytesRow), str(OctetRow)))
-
-		return instanceResult
+				return("%s+%s=" % (str(BytesRow), str(OctetRow)))
+			if SOperation == int(hashing_octet):
+				return("%s-%s=" % (str(BytesRow), str(OctetRow)))
+			if ZOperation == int(hashing_octet):
+				return("%s-%s=" % (str(OctetRow), str(BytesRow)))
+			if MOperation == int(hashing_octet):
+				return("%s*%s=" % (str(BytesRow), str(OctetRow)))
 				
 def BertPanel(BinaryCalc):
 	"""
