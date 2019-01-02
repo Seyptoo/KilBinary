@@ -1,72 +1,128 @@
-def calc(octet):
-	print("calcul de %s" % (octet))
-	for n in range(0, 10000):
-		for n2 in range(0, 10000):
-			addition = n + n2
-			#return("%s + %s = %s" % (str(n), str(n2), str(addition)))
-			#input('')
-			soustraction = n - n2
-			soustraction2 = n2 - n
-			multiplication  = n * n2
+#coding:utf-8
+
+import sys
+import subprocess
+import options as argument
+
+CHECK_VERSION = sys.version_info <= (3,0)
+if(CHECK_VERSION):
+	# Let's test if the program is in Python 2 or 3.
+	sys.exit("[!] Version of Python is incorrect.")
+
+def BertModel(hashing_octet):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	AlgorithmBytes : It's the bytes in the hash
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	for BytesRow in range(0, 10000):
+		# Create loop for hashsing.
+		for OctetRow in range(0, 10000):
+			# Create loop for octets.
+			AOperation = BytesRow + OctetRow
+			SOperation = BytesRow - OctetRow
+			ZOperation = OctetRow - BytesRow
+			MOperation = BytesRow * OctetRow
+
 			try:
-				division = int(n / n2)
-				division2 = int(n2 / n)
-				if division == int(octet):
-					return("%s/%s=" % (str(n), str(n2)))
-				if division2 == int(octet):
-					return("%s/%s=" % (str(n2), str(n)))
-			except:
-				pass
-			
-			if addition == int(octet):
-				return("%s+%s=" % (str(n), str(n2)))
-			if soustraction == int(octet):
-				return("%s-%s=" % (str(n), str(n2)))
-			if soustraction2 == int(octet):
-				return("%s-%s=" % (str(n2), str(n)))
-			if multiplication == int(octet):
-				return("%s*%s=" % (str(n), str(n2)))
+				# When the function is of good cause..
+				# If there is a problem with the division, go straight into the exception.
+
+				DOperation = int(BytesRow / OctetRow)
+				OOperation = int(OctetRow / BytesRow)
+
+				if DOperation == int(hashing_octet):
+					instanceResult = ("%s/%s=" % (str(BytesRow), str(OctetRow)))
+				elif OOperation == int(hashing_octet):
+					instanceResult = ("%s/%s=" % (str(OctetRow), str(BytesRow)))
 				
-def alphabet_convert(calcbin):
-	alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	alphabet = list(alphabet)
+				# A division error can happen so I made an exception.
+				# The truth that it's cool to make an exception but I put a pass to do nothing.
+			except ZeroDivisionError as e:
+				pass
+
+			if AOperation == int(hashing_octet):
+				instanceResult = ("%s+%s=" % (str(BytesRow), str(OctetRow)))
+			elif SOperation == int(hashing_octet):
+				instanceResult = ("%s-%s=" % (str(BytesRow), str(OctetRow)))
+			elif ZOperation == int(hashing_octet):
+				instanceResult = ("%s-%s=" % (str(OctetRow), str(BytesRow)))
+			elif MOperation == int(hashing_octet):
+				instanceResult = ("%s*%s=" % (str(BytesRow), str(OctetRow)))
+
+		return instanceResult
+				
+def BertPanel(BinaryCalc):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	BinaryCalc : It's the bytes in the hash
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	Alphabet = list(Alphabet)
 	
-	text_crypt = ""
+	AlgorithmCrypt = ""
 	
-	for caractere in calcbin:
+	for Character in BinaryCalc:
 		try:
-			car = int(caractere)
-			pos = alphabet[car]
-			text_crypt += pos
-			
+			# Create exception for testing.
+			Nulling = int(Character)
+			Appends = Alphabet[Nulling]
+			AlgorithmCrypt += Appends
+			# Success for loop hashing.
 		except:
-			text_crypt += caractere
+			AlgorithmCrypt += Character
 			
-	return(text_crypt)
+	return(AlgorithmCrypt)
 	
-def text_to_bin(texte):
-	list_octet = [ bin(ord(ch))[2:].zfill(8) for ch in texte ]
-	liste = []
+def BertPnnel(Texting):
+	"""
+	This function will test the algorithm.
+	Opp check the algorithm.
+
+	Parameters
+	----
+	Texting : It's the bytes in the hash
+
+	Return
+	----
+	He will return the hash with success.	
+	"""
+	ListBytes = [ bin(ord(ch))[2:].zfill(8) for ch in Texting ]
+	ArguLists = []
 	
-	for octet in list_octet:
-		seg_1 = octet[:3]
-		seg_2 = octet[3:]
+	for Bytes in ListBytes:
+		SegmentOne = Bytes[:3]
+		SegmentTwo = Bytes[3:]
 		
-		liste.append(seg_1)
-		liste.append(seg_2)
+		ArguLists.append(SegmentOne)
+		ArguLists.append(SegmentTwo)
 		
-	return(liste)
+	return(ArguLists)
 
-calc_text = ""
 
-texte = input("crypt> ")
+if __name__ == "__main__":
+	# Argument Text.
+	ArgumentText = ""
+	BinaryList = BertPnnel(argument.encrypt)
 
-bin_list = text_to_bin(texte)
-
-for octet in bin_list:
-	calcul = calc(octet)
-	calc_text += calcul
-
-final_crypt = alphabet_convert(calc_text)
-print("HASH: "+final_crypt)
-	
+	for Bytes in BinaryList:
+		ArgumentCalc = BertModel(Bytes)
+		ArgumentText += ArgumentCalc
+	# Calling the function 'BertPanel(ArgumentText)'
+	ArgumentFunc = BertPanel(ArgumentText)
+	print("HASH: "+ ArgumentFunc)
