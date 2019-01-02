@@ -123,4 +123,4 @@ if __name__ == "__main__":
 		ArgumentText += ArgumentCalc
 	# Calling the function 'BertPanel(ArgumentText)'
 	ArgumentFunc = BertPanel(ArgumentText)
-	print("HASH: "+ ArgumentFunc)
+	print("HASH : "+ ArgumentFunc)
