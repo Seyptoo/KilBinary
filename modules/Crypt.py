@@ -2,7 +2,7 @@
 
 import sys
 import subprocess
-import options as argument
+
 
 CHECK_VERSION = sys.version_info <= (3,0)
 if(CHECK_VERSION):
@@ -87,7 +87,7 @@ def BertPanel(BinaryCalc):
 			
 	return(AlgorithmCrypt)
 	
-def BertPnnel(Texting):
+def BertVic(Texting):
 	"""
 	This function will test the algorithm.
 	Opp check the algorithm.
@@ -114,13 +114,17 @@ def BertPnnel(Texting):
 
 
 if __name__ == "__main__":
-	# Argument Text.
-	ArgumentText = ""
-	BinaryList = BertPnnel(argument.encrypt)
+	if(argument.encrypt):
+		ArgumentText = ""
+		BinaryList = BertVic(argument.encrypt)
 
-	for Bytes in BinaryList:
-		ArgumentCalc = BertModel(Bytes)
-		ArgumentText += ArgumentCalc
-	# Calling the function 'BertPanel(ArgumentText)'
-	ArgumentFunc = BertPanel(ArgumentText)
-	print("HASH : "+ ArgumentFunc)
+		for Bytes in BinaryList:
+			ArgumentCalc = BertModel(Bytes)
+			ArgumentText += ArgumentCalc
+		# Calling the function 'BertPanel(ArgumentText)'
+		ArgumentFunc = BertPanel(ArgumentText)
+		print("HASH : "+ ArgumentFunc)
+	else:
+		print("[!] Please enter options -e.")
+
+
