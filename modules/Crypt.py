@@ -3,12 +3,6 @@
 import sys
 import subprocess
 
-
-CHECK_VERSION = sys.version_info <= (3,0)
-if(CHECK_VERSION):
-	# Let's test if the program is in Python 2 or 3.
-	sys.exit("[!] Version of Python is incorrect.")
-
 def BertModel(hashing_octet):
 	"""
 	This function will test the algorithm.
@@ -111,20 +105,3 @@ def BertVic(Texting):
 		ArguLists.append(SegmentTwo)
 		
 	return(ArguLists)
-
-
-if __name__ == "__main__":
-	if(argument.encrypt):
-		ArgumentText = ""
-		BinaryList = BertVic(argument.encrypt)
-
-		for Bytes in BinaryList:
-			ArgumentCalc = BertModel(Bytes)
-			ArgumentText += ArgumentCalc
-		# Calling the function 'BertPanel(ArgumentText)'
-		ArgumentFunc = BertPanel(ArgumentText)
-		print("HASH : "+ ArgumentFunc)
-	else:
-		print("[!] Please enter options -e.")
-
-
