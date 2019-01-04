@@ -28,11 +28,14 @@ class Algorithm(object):
 				self.Argument += ArgumentCalc
 
 			ArgumentFunc = Crypt.BertPanel(self.Argument)
+			# Algorithm is created.. binary
+			print("[+] Hash : "+ ArgumentFunc)
 			
 		if(self.decrypt):
 			self.BinaryList = Decrypt.BertPanel(self.decrypt)
 			BinaryArguments = Decrypt.BertModel(self.BinaryList)
 			DecryptArguments = binascii.unhexlify('%x' % int('0b' + BinaryArguments, 2)).decode("ascii")
+			print("[+] DECRYPT : "+ DecryptArguments)
 
 	def ArgumentOptions(self):
 		if not(self.encrypt or self.decrypt):
