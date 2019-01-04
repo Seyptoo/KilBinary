@@ -4,11 +4,6 @@ import binascii
 import sys
 import subprocess
 
-CHECK_VERSION = sys.version_info <= (3,0)
-if(CHECK_VERSION):
-	# Let's test if the program is in Python 2 or 3.
-	sys.exit("[!] Version of Python is incorrect.")
-
 def BertModel(AlgorithmBytes):
 	"""
 	This function will test the algorithm.
