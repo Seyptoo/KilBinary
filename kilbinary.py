@@ -29,7 +29,7 @@ class Algorithm(object):
 
 			ArgumentFunc = Crypt.BertPanel(self.Argument)
 			# Algorithm is created.. binary
-			print("[+] Hash : "+ ArgumentFunc)
+			print("[+] ENCRYPT : "+ ArgumentFunc)
 			
 		if(self.decrypt):
 			self.BinaryList = Decrypt.BertPanel(self.decrypt)
